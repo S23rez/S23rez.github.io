@@ -9,7 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <style>
-
 /* Layout: one 1120px column; hero = statement + photo/status card; projects as a filterable two-column grid; reference sections in a quiet two-column rhythm. */
 :root {
   --paper: #f1f3f2;
@@ -298,16 +297,19 @@ footer { padding-block: 28px 40px; color: var(--muted); font-size: 13.5px; displ
       </article>
 
       <article class="card" data-d="soc">
-        <div class="kicker"><span class="domain">Detection &amp; SOC</span><span class="note">Elastic Stack</span></div>
+        <div class="kicker"><span class="domain">Detection &amp; SOC</span><span class="note">Elastic Stack · no cloud</span></div>
         <h3>Elastic Stack mini-SOC</h3>
-        <p>A local SOC that unifies network IDS alerts, host telemetry and Kubernetes logs in one place.</p>
+        <p>A local SOC that brings network IDS alerts, host telemetry and Kubernetes logs into one view, with alerting on top.</p>
+        <div class="evidence"><span class="c"># query rule, runs every 1m on suricata-*</span>
+event.dataset: "suricata"
+  AND suricata.eve.alert.severity <span class="k">&lt;= 2</span></div>
         <ul>
-          <li>Streams Suricata, osquery and Kubernetes logs through three custom Logstash pipelines (JSON codecs, Grok) into daily indices.</li>
-          <li>Unified Kibana dashboard plus a rule that fires every minute on high-severity Suricata alerts.</li>
-          <li>Diagnosed and fixed 12 operational issues across the stack.</li>
+          <li>Three Logstash pipelines: Suricata EVE JSON, osquery results with UNIX time parsing, and Grok-parsed Kubernetes HTTP logs.</li>
+          <li>Daily indices per source feeding one Kibana overview dashboard.</li>
+          <li>Credentials kept out of the configs through environment variables; 12 operational issues diagnosed and fixed.</li>
         </ul>
         <div class="tags"><span>Elasticsearch</span><span>Logstash</span><span>Kibana</span><span>Suricata</span><span>osquery</span><span>Minikube</span></div>
-        <div class="links"><a href="https://github.com/S23rez/SIEM-Projects" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
+        <div class="links"><a href="https://github.com/S23rez/Elastic-Mini-SOC" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
       </article>
 
       <article class="card" data-d="soc">
