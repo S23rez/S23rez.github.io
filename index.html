@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fatai Odunuga Portfolio</title>
+<meta name="description" content="Fatai Odunuga, network and systems security analyst in Lagos. Labs, detection tooling and cloud security projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+
+/* Layout: one 1120px column; hero = statement + photo/status card; projects as a filterable two-column grid; reference sections in a quiet two-column rhythm. */
+:root {
+  --paper: #f1f3f2;
+  --panel: #ffffff;
+  --ink: #18222b;
+  --muted: #56626d;
+  --line: #d4dbdf;
+  --wash: #e5eaec;
+  --accent: #a85a17;
+  --accent-soft: #f3e3d2;
+  --ok: #2f7d55;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f161c; --panel: #151f27; --ink: #e5eaee; --muted: #9ba7b1; --line: #26333d;
+    --wash: #1b2731; --accent: #e3995a; --accent-soft: #3a2a1d; --ok: #5cc28c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f161c; --panel: #151f27; --ink: #e5eaee; --muted: #9ba7b1; --line: #26333d;
+  --wash: #1b2731; --accent: #e3995a; --accent-soft: #3a2a1d; --ok: #5cc28c; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 400 16px/1.6 var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+.mono { font-family: var(--mono); }
+.eyebrow { font: 500 12px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* Top bar */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.brand { font: 600 15px/1 var(--mono); text-decoration: none; letter-spacing: .02em; }
+.brand span { color: var(--accent); }
+.top nav { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+.top nav::-webkit-scrollbar { display: none; }
+.top nav a { font-size: 14px; text-decoration: none; color: var(--muted); padding: 6px 10px; border-radius: 6px; white-space: nowrap; }
+.top nav a:hover { color: var(--ink); background: var(--wash); }
+
+/* Hero */
+.hero { padding-block: clamp(40px, 7vw, 80px) clamp(32px, 5vw, 56px); display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+.hero h1 { font-size: clamp(44px, 7.2vw, 84px); line-height: .95; font-weight: 700; letter-spacing: -.01em; }
+.hero .role { margin-top: 14px; font: 600 clamp(18px, 2.2vw, 22px)/1.3 var(--display); color: var(--accent); letter-spacing: .01em; }
+.hero .lede { margin-top: 22px; font-size: clamp(17px, 1.6vw, 19px); line-height: 1.6; max-width: 60ch; }
+.hero .lede strong { font-weight: 600; }
+.cta { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 11px 16px; border-radius: 8px;
+  font: 500 15px/1 var(--body); text-decoration: none; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer;
+}
+.btn:hover { border-color: var(--ink); }
+.btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.btn.primary:hover { background: var(--accent); border-color: var(--accent); }
+.btn svg { width: 16px; height: 16px; flex: none; }
+
+.idcard { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.idcard .photo { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; align-items: center; padding: 18px; border-bottom: 1px solid var(--line); }
+.idcard img { width: 96px; height: 96px; border-radius: 8px; object-fit: cover; display: block; max-width: 100%; }
+.idcard .who { min-width: 0; }
+.idcard .who b { display: block; font: 600 18px/1.25 var(--display); }
+.status { display: inline-flex; align-items: center; gap: 7px; margin-top: 6px; font: 500 13px/1.3 var(--body); color: var(--ok); }
+.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 25%, transparent); }
+.idcard dl { margin: 0; padding: 14px 18px 18px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 14px; font: 400 13.5px/1.45 var(--mono); }
+.idcard dt { color: var(--muted); }
+.idcard dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.facts div { padding: 18px 16px 18px 0; display: grid; gap: 2px; }
+.facts div + div { padding-left: 16px; border-left: 1px solid var(--line); }
+.facts b { font: 600 30px/1.1 var(--display); font-variant-numeric: tabular-nums; }
+.facts span { font-size: 14px; color: var(--muted); }
+
+/* Sections */
+section { padding-block: clamp(48px, 7vw, 80px) 0; scroll-margin-top: 64px; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+.sec-head h2 { font-size: clamp(30px, 4vw, 44px); font-weight: 700; line-height: 1.05; }
+.sec-head p { margin: 8px 0 0; color: var(--muted); max-width: 62ch; }
+
+/* Filters */
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.filters button {
+  font: 500 14px/1 var(--body); padding: 9px 13px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: transparent; color: var(--muted);
+}
+.filters button:hover { color: var(--ink); border-color: var(--muted); }
+.filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.filters button .n { font-family: var(--mono); font-size: 12px; opacity: .7; margin-left: 4px; }
+
+/* Project cards */
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 22px 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.card.feature { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 12px 32px; }
+.card.feature .side { display: flex; flex-direction: column; gap: 12px; justify-content: space-between; min-width: 0; }
+.card .kicker { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+.card .domain { font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.card .note { font: 400 12px/1 var(--mono); color: var(--muted); white-space: nowrap; }
+.card h3 { font-size: 23px; font-weight: 600; line-height: 1.2; }
+.card p { margin: 0; color: var(--muted); }
+.card ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 15px; }
+.card li::marker { color: var(--accent); }
+.evidence {
+  font: 400 13px/1.55 var(--mono); background: var(--wash); border-radius: 6px; padding: 10px 12px;
+  overflow-x: auto; white-space: pre; color: var(--ink);
+}
+.evidence .c { color: var(--muted); }
+.evidence .k { color: var(--accent); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+.tags span { font: 400 12.5px/1 var(--mono); padding: 5px 8px; border-radius: 5px; border: 1px solid var(--line); color: var(--muted); }
+.links { display: flex; flex-wrap: wrap; gap: 14px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 14px; }
+.links a { font-weight: 500; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; }
+.links a:hover { color: var(--accent); }
+.links a svg { width: 14px; height: 14px; }
+.links .private { color: var(--muted); }
+
+.more { margin-top: 28px; border-top: 1px solid var(--line); }
+.more h3 { font: 600 18px/1.3 var(--display); margin: 20px 0 6px; }
+.more ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+.more li { padding: 12px 0; border-bottom: 1px solid var(--line); display: grid; gap: 2px; min-width: 0; }
+.more li a { font-weight: 600; text-decoration: none; }
+.more li a:hover { color: var(--accent); }
+.more li span { color: var(--muted); font-size: 14.5px; }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; }
+.skill { padding: 16px 0; border-top: 1px solid var(--line); min-width: 0; }
+.skill h3 { font: 600 17px/1.3 var(--display); margin-bottom: 6px; }
+.skill p { margin: 0; color: var(--muted); font-size: 15px; }
+
+/* Credentials and history */
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 64px); }
+.list { list-style: none; margin: 0; padding: 0; }
+.list li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 13px 0; border-top: 1px solid var(--line); }
+.list li:last-child { border-bottom: 1px solid var(--line); }
+.list b { font-weight: 600; }
+.list .sub { grid-column: 1; color: var(--muted); font-size: 14.5px; }
+.list time, .list .yr { font: 400 13.5px/1.6 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; grid-row: 1; grid-column: 2; }
+.list li.hl b::after { content: "Certification"; margin-left: 8px; font: 500 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 3px 6px; border-radius: 4px; vertical-align: 2px; }
+h3.minor { font: 600 20px/1.2 var(--display); margin: 0 0 12px; }
+.stack { display: grid; gap: 36px; }
+.job p { margin: 10px 0 0; color: var(--muted); }
+.job ul { margin: 10px 0 0; padding-left: 18px; display: grid; gap: 6px; }
+.job li::marker { color: var(--accent); }
+
+/* Contact */
+.contact { margin-top: clamp(56px, 8vw, 96px); background: var(--ink); color: var(--paper); border-radius: 14px; padding: clamp(28px, 5vw, 52px); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; align-items: end; }
+.contact h2 { font-size: clamp(30px, 4.4vw, 48px); line-height: 1.05; }
+.contact p { margin: 12px 0 0; opacity: .8; max-width: 52ch; }
+.contact .rows { display: grid; gap: 10px; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border: 1px solid color-mix(in srgb, var(--paper) 22%, transparent); border-radius: 8px; min-width: 0; }
+.row span { font: 400 14.5px/1.4 var(--mono); overflow-wrap: anywhere; min-width: 0; user-select: all; }
+.row a { color: var(--paper); text-decoration: none; font: 400 14.5px/1.4 var(--mono); overflow-wrap: anywhere; }
+.row a:hover { text-decoration: underline; }
+.row small { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; opacity: .6; flex: none; }
+.copy { flex: none; font: 500 13px/1 var(--body); padding: 8px 10px; border-radius: 6px; cursor: pointer; border: 1px solid color-mix(in srgb, var(--paper) 35%, transparent); background: transparent; color: var(--paper); }
+.copy:hover { background: color-mix(in srgb, var(--paper) 12%, transparent); }
+
+footer { padding-block: 28px 40px; color: var(--muted); font-size: 13.5px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+@media (max-width: 880px) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .card.feature { grid-template-columns: minmax(0, 1fr); }
+  .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contact { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 680px) {
+  .grid, .more ul, .two, .skills { grid-template-columns: minmax(0, 1fr); }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts div:nth-child(3) { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  .facts div:nth-child(4) { border-top: 1px solid var(--line); }
+  .top nav a.opt { display: none; }
+}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">s23rez<span>@</span>lagos</a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a class="opt" href="#skills">Skills</a>
+      <a href="#credentials">Credentials</a>
+      <a class="opt" href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Portfolio · Network &amp; systems security</p>
+      <h1>Fatai<br>Odunuga</h1>
+      <p class="role">Network &amp; Systems Security Analyst</p>
+      <p class="lede">I design segmented networks, harden identity and servers, and build detection tooling mapped to <strong>MITRE ATT&amp;CK</strong>. Every lab here is documented on GitHub, with configs, captures and screenshots you can check yourself.</p>
+      <div class="cta">
+        <a class="btn primary" href="#work">See the work</a>
+        <a class="btn" href="https://github.com/S23rez" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          github.com/S23rez</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <aside class="idcard" aria-label="Profile summary">
+      <div class="photo">
+        <img src="data:image/jpeg;base64,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" alt="Portrait of Fatai Odunuga" width="96" height="96">
+        <div class="who">
+          <b>Odunuga Fatai Olayinka</b>
+          <span class="status">Open to SOC and network security roles</span>
+        </div>
+      </div>
+      <dl>
+        <dt>base</dt><dd>Lagos, Nigeria (WAT, UTC+1)</dd>
+        <dt>certs</dt><dd>ISC2 CC · OCI Foundations Associate</dd>
+        <dt>focus</dt><dd>Segmentation · AD hardening · SOC monitoring · AWS/Azure</dd>
+        <dt>training</dt><dd>Network &amp; System Security, SQI College of ICT</dd>
+      </dl>
+    </aside>
+  </div>
+
+  <div class="facts" aria-label="At a glance">
+    <div><b>16</b><span>AWS networking &amp; security labs</span></div>
+    <div><b>10</b><span>certifications and courses</span></div>
+    <div><b>5 yrs</b><span>handling confidential case records</span></div>
+    <div><b>2</b><span>international conference talks</span></div>
+  </div>
+
+  <section id="work" aria-labelledby="work-h">
+    <div class="sec-head">
+      <div>
+        <h2 id="work-h">Selected work</h2>
+        <p>Lab builds and tools, each with the repository where you can read the configs and code.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button type="button" data-f="all" aria-pressed="true">All</button>
+        <button type="button" data-f="soc" aria-pressed="false">Detection &amp; SOC</button>
+        <button type="button" data-f="net" aria-pressed="false">Network</button>
+        <button type="button" data-f="cloud" aria-pressed="false">Cloud</button>
+        <button type="button" data-f="dev" aria-pressed="false">Software</button>
+      </div>
+    </div>
+
+    <div class="grid" id="projects">
+
+      <article class="card feature" data-d="soc">
+        <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+          <div class="kicker"><span class="domain">Detection &amp; SOC</span><span class="note">Python · SQLite · WebGL</span></div>
+          <h3>Project Sentinel: full-stack security monitor</h3>
+          <p>A modular threat engine that watches the network, the file system and web logs at once, then scores and maps every finding to ATT&amp;CK.</p>
+          <ul>
+            <li>Parallel TCP port scanning, SHA-256 file-integrity baselines and web-log analysis in one pipeline.</li>
+            <li>Detects SQLi, XSS, path traversal, command injection and brute-force floods, including double-URL-encoded and HTML-entity bypass payloads.</li>
+            <li>Ranks alerts with a 0–100 risk score, stores events in SQLite, emails above a threshold and renders a 3D SOC dashboard.</li>
+          </ul>
+        </div>
+        <div class="side">
+          <div class="evidence" aria-label="ATT&amp;CK techniques covered"><span class="c"># findings mapped to MITRE ATT&amp;CK</span>
+<span class="k">T1046</span>  Network Service Discovery
+<span class="k">T1190</span>  Exploit Public-Facing Application
+<span class="k">T1110</span>  Brute Force
+<span class="k">T1059</span>  Command &amp; Scripting Interpreter
+<span class="k">T1565</span>  Data Manipulation</div>
+          <div class="tags"><span>Python</span><span>SQLite</span><span>Three.js</span><span>Threat detection</span></div>
+          <div class="links"><a href="https://github.com/S23rez/SIEM-Projects/tree/main/Project%20Sentinel%20SOC" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="card" data-d="soc">
+        <div class="kicker"><span class="domain">Detection &amp; SOC</span><span class="note">Elastic Stack</span></div>
+        <h3>Elastic Stack mini-SOC</h3>
+        <p>A local SOC that unifies network IDS alerts, host telemetry and Kubernetes logs in one place.</p>
+        <ul>
+          <li>Streams Suricata, osquery and Kubernetes logs through three custom Logstash pipelines (JSON codecs, Grok) into daily indices.</li>
+          <li>Unified Kibana dashboard plus a rule that fires every minute on high-severity Suricata alerts.</li>
+          <li>Diagnosed and fixed 12 operational issues across the stack.</li>
+        </ul>
+        <div class="tags"><span>Elasticsearch</span><span>Logstash</span><span>Kibana</span><span>Suricata</span><span>osquery</span><span>Minikube</span></div>
+        <div class="links"><a href="https://github.com/S23rez/SIEM-Projects" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
+      </article>
+
+      <article class="card" data-d="soc">
+        <div class="kicker"><span class="domain">Detection &amp; SOC</span><span class="note">Python</span></div>
+        <h3>Security automation &amp; OSINT toolkit</h3>
+        <p>Scripts that take repetitive Tier-1 work off an analyst's desk.</p>
+        <div class="evidence"><span class="c"># incident-response playbook</span>
+failed_logins &gt;= <span class="k">5</span>  →  quarantine IP
+                    →  lock account
+                    →  notify SOC + audit log</div>
+        <ul>
+          <li>Multithreaded port scanner (ranges and CIDR), subdomain finder and OSINT scraper.</li>
+          <li>HAR sanitizer that strips Authorization headers, cookies and emails before files are shared.</li>
+          <li>Cisco ACL simulator modelling first-match and implicit-deny logic.</li>
+        </ul>
+        <div class="tags"><span>Python</span><span>Flask</span><span>Incident response</span><span>OSINT</span></div>
+        <div class="links"><a href="https://github.com/S23rez/Network-Projects/tree/main/python-network-tools/Automations" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
+      </article>
+
+      <article class="card" data-d="net">
+        <div class="kicker"><span class="domain">Network</span><span class="note">GNS3 · Cisco vIOS</span></div>
+        <h3>Enterprise network security lab</h3>
+        <p>A four-zone segmented network where policy is enforced and then proven with traffic tests.</p>
+        <div class="evidence"><span class="c"># zone policy (named extended ACLs)</span>
+DMZ    → internal   <span class="k">deny</span>
+Users  → Servers    <span class="k">permit</span> http, https
+IT     → Mgmt       <span class="k">permit</span>   <span class="c">others deny</span></div>
+        <ul>
+          <li>Users, Servers, Management and DMZ on separate VLANs with inter-VLAN routing.</li>
+          <li>Switch management restricted to SSH with AES-CTR ciphers; verified per zone with ping, wget and a Wireshark capture.</li>
+        </ul>
+        <div class="tags"><span>VLANs</span><span>ACLs</span><span>SSH hardening</span><span>Wireshark</span></div>
+        <div class="links"><span class="private">Lab notes available on request</span></div>
+      </article>
+
+      <article class="card" data-d="net">
+        <div class="kicker"><span class="domain">Network · Identity</span><span class="note">Windows Server</span></div>
+        <h3>Active Directory &amp; Group Policy hardening</h3>
+        <p>A Windows domain organised for least privilege, with policies verified on the endpoints.</p>
+        <ul>
+          <li>Departmental OUs (IT, Management, Marketing, Sales) protected from accidental deletion.</li>
+          <li>Password-reset rights delegated on one OU to a support user instead of Domain Admin; resets scripted with <span class="mono">Set-ADAccountPassword</span>.</li>
+          <li>GPOs enforce minimum password length, block Control Panel and lock idle machines after 5 minutes.</li>
+        </ul>
+        <div class="tags"><span>AD DS</span><span>GPO</span><span>PowerShell</span><span>Least privilege</span></div>
+        <div class="links"><span class="private">Lab notes available on request</span></div>
+      </article>
+
+      <article class="card" data-d="cloud">
+        <div class="kicker"><span class="domain">Cloud</span><span class="note">Microsoft Azure</span></div>
+        <h3>Azure identity &amp; workload security</h3>
+        <p>Identity first, then a hardened server, then an automated deployment path.</p>
+        <ul>
+          <li>Least-privilege Entra ID user with a scoped Contributor role and MFA through Microsoft Authenticator.</li>
+          <li>Windows Server 2025 VM with Trusted Launch (Secure Boot, vTPM), an NSG, Defender for Cloud, hotpatching and boot diagnostics.</li>
+          <li>React app shipped to Azure Static Web Apps through GitHub Actions CI/CD.</li>
+        </ul>
+        <div class="tags"><span>Entra ID</span><span>RBAC</span><span>MFA</span><span>NSG</span><span>Defender</span><span>GitHub Actions</span></div>
+        <div class="links"><a href="https://github.com/S23rez/Cloud-Projects/tree/main/azure-labs" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
+      </article>
+
+      <article class="card" data-d="cloud">
+        <div class="kicker"><span class="domain">Cloud</span><span class="note">16 labs · AWS</span></div>
+        <h3>AWS cloud networking &amp; security</h3>
+        <p>A full series on building and locking down VPCs, from first subnet to encrypted data.</p>
+        <ul>
+          <li>Public and private subnets, route tables, internet gateways, security groups and network ACLs, with connectivity tests between tiers.</li>
+          <li>VPC peering, VPC endpoints for private S3 access, and traffic monitoring with Flow Logs.</li>
+          <li>Least-privilege IAM policies tested in the Policy Simulator; database encryption with KMS.</li>
+        </ul>
+        <div class="tags"><span>VPC</span><span>IAM</span><span>KMS</span><span>Flow Logs</span><span>S3</span><span>Aurora</span></div>
+        <div class="links"><a href="https://github.com/S23rez/Cloud-Projects/tree/main/aws-labs" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
+      </article>
+
+      <article class="card" data-d="net">
+        <div class="kicker"><span class="domain">Network</span><span class="note">Cisco Packet Tracer</span></div>
+        <h3>SmartTech enterprise network simulation</h3>
+        <p>An end-to-end office network with central services, role-based file access and smart-building devices.</p>
+        <div class="evidence">net 192.168.10.0/24   gw <span class="k">.1</span>   server <span class="k">.2</span>
+services: DHCP · DNS · HTTP · FTP (RBAC) · email · IoT</div>
+        <ul>
+          <li>Edge router, multilayer core and Admin, IT and Management switches plus an IoT branch.</li>
+          <li>Found and fixed a DHCP lease misdirection fault.</li>
+        </ul>
+        <div class="tags"><span>DHCP</span><span>DNS</span><span>RBAC</span><span>IoT</span></div>
+        <div class="links"><a href="https://github.com/S23rez/SmartTech-Packet-Tracer-Network-Simulation-" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
+      </article>
+
+      <article class="card" data-d="net">
+        <div class="kicker"><span class="domain">Network</span><span class="note">GNS3 · Cisco IOS 15.9</span></div>
+        <h3>Routing labs &amp; IOS hardening templates</h3>
+        <p>Multi-subnet and multi-router topologies with full device configs and a live packet capture.</p>
+        <div class="evidence">Gi0/0  10.0.0.254/8      <span class="c">class A pool</span>
+Gi0/2  172.16.0.254/16    <span class="c">class B pool</span>
+Gi0/1  192.168.0.254/24   <span class="c">class C pool</span></div>
+        <ul>
+          <li>Four-router static routing lab with terminal logs and a Wireshark <span class="mono">.pcapng</span> trace.</li>
+          <li>IOS templates: enable secret, SSH v2 with AES-CTR, exec timeouts, banners and unused services disabled.</li>
+        </ul>
+        <div class="tags"><span>GNS3</span><span>Static routing</span><span>DHCP pools</span><span>IOS hardening</span></div>
+        <div class="links"><a href="https://github.com/S23rez/Network-Projects" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
+      </article>
+
+      <article class="card" data-d="dev">
+        <div class="kicker"><span class="domain">Software</span><span class="note">Client project</span></div>
+        <h3>Pinnacle ERP: secure inventory &amp; sales system</h3>
+        <p>A full-stack ERP for a beverage distributor, built with security controls from the start.</p>
+        <ul>
+          <li>Role-based access re-checked against the live user on every request, forced change of default passwords and one-time recovery codes.</li>
+          <li>Audit log of every change, transactional saves and a sale-or-return settlement flow.</li>
+          <li>Linux deployment behind Caddy TLS with a sandboxed systemd service and encrypted off-site backups.</li>
+        </ul>
+        <div class="tags"><span>React</span><span>Node.js</span><span>SQLite</span><span>RBAC</span><span>Linux</span></div>
+        <div class="links"><span class="private">Private repository (client work)</span></div>
+      </article>
+
+      <article class="card" data-d="dev">
+        <div class="kicker"><span class="domain">Software</span><span class="note">Python · SQLite</span></div>
+        <h3>Medicare hospital management system</h3>
+        <p>A role-based hospital system for admins, doctors, receptionists and patients, with billing.</p>
+        <ul>
+          <li>Doctors can only open records of patients they have seen; other access attempts are blocked.</li>
+          <li>Automatic billing from consultation fees and treatment, 7-day slot booking without double-booking.</li>
+          <li>Unit tests for fees, booking, billing maths, access control and payments.</li>
+        </ul>
+        <div class="tags"><span>Python</span><span>SQLite</span><span>Access control</span><span>Testing</span></div>
+        <div class="links"><a href="https://github.com/S23rez/Python-Projects/tree/main/cli-applications/medicare_hospital_system" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
+      </article>
+    </div>
+
+    <div class="more">
+      <h3>Also on GitHub</h3>
+      <ul>
+        <li><a href="https://github.com/S23rez/Python-Projects/tree/main/cli-applications/ShopHub" target="_blank" rel="noopener">ShopHub</a><span>E-commerce system with RBAC, regex input validation and ACID transactions that prevent overselling.</span></li>
+        <li><a href="https://github.com/S23rez/Cloud-Projects/tree/main/CI-CD%20Pipeline/T.O.C-Online-Fashion-Store" target="_blank" rel="noopener">TOC fashion store</a><span>React, Vite and Firebase storefront deployed through a GitHub Actions pipeline.</span></li>
+        <li><a href="https://github.com/S23rez/Network-Projects/tree/main/packet-tracer-labs" target="_blank" rel="noopener">Packet Tracer CCNA labs</a><span>Device security, LAN switching, IPv4 addressing and interface configuration exercises.</span></li>
+        <li><a href="https://github.com/S23rez/Python-Projects/tree/main/automation-scripts" target="_blank" rel="noopener">Flask security dashboard</a><span>Turns firewall logs into a web alert view; plus a first FastAPI service.</span></li>
+        <li><a href="https://github.com/S23rez/Cloud-Projects" target="_blank" rel="noopener">Containers &amp; cloud automation</a><span>Dockerised Flask app and Python scripts for server checks and architecture tasks.</span></li>
+        <li><a href="https://github.com/S23rez/AI-Projects/tree/main/Mini-LLM" target="_blank" rel="noopener">Mini-LLM</a><span>Context-grounded Q&amp;A on Gemini 2.5 Flash with keys kept out of code via environment files.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="skills" aria-labelledby="skills-h">
+    <div class="sec-head"><div><h2 id="skills-h">Skills</h2><p>What I use in the labs above, grouped the way a security team would.</p></div></div>
+    <div class="skills">
+      <div class="skill"><h3>Network security</h3><p>Cisco routers and switches, VLAN segmentation, inter-VLAN routing, ACLs, FortiGate and UFW firewalls, IDS/IPS, DMZ, VPN, NAC, subnetting, GNS3.</p></div>
+      <div class="skill"><h3>Security monitoring</h3><p>Elastic Stack, Suricata, osquery, Wireshark, TCPDump, PCAP analysis, MITRE ATT&amp;CK, Cyber Kill Chain, OSINT.</p></div>
+      <div class="skill"><h3>Identity &amp; access</h3><p>Active Directory, delegation, Group Policy, Entra ID, RBAC, MFA, least privilege, segregation of duties.</p></div>
+      <div class="skill"><h3>Linux &amp; Windows</h3><p>Users and permissions, sudo, key-based SSH, systemd, patching, cron, journalctl; Windows Server 2025 and PowerShell.</p></div>
+      <div class="skill"><h3>Cloud</h3><p>AWS VPC, security groups, NACLs, peering, endpoints, Flow Logs, IAM, KMS; Azure NSGs and Defender for Cloud; OCI.</p></div>
+      <div class="skill"><h3>Automation &amp; DevOps</h3><p>Python (security tooling, Flask), Bash, SQL, Docker, Kubernetes (Minikube), GitHub Actions, Git.</p></div>
+    </div>
+  </section>
+
+  <section id="credentials" aria-labelledby="cred-h">
+    <div class="sec-head"><div><h2 id="cred-h">Credentials</h2><p>Certifications, courses and education.</p></div></div>
+    <div class="two">
+      <div>
+        <h3 class="minor">Certifications &amp; courses</h3>
+        <ul class="list">
+          <li class="hl"><b>Certified in Cybersecurity (CC)</b><span class="sub">ISC2</span><span class="yr">2026</span></li>
+          <li class="hl"><b>OCI 2025 Certified Foundations Associate</b><span class="sub">Oracle University</span><span class="yr">2026</span></li>
+          <li><b>Connect and Protect: Networks and Network Security</b><span class="sub">Google / Coursera</span><span class="yr">2026</span></li>
+          <li><b>Play It Safe: Manage Security Risks</b><span class="sub">Google / Coursera</span><span class="yr">2026</span></li>
+          <li><b>Foundations of Cybersecurity</b><span class="sub">Google / Coursera</span><span class="yr">2025</span></li>
+          <li><b>Introduction to Network Analysis</b><span class="sub">Security Blue Team</span><span class="yr">2026</span></li>
+          <li><b>Introduction to Bash</b><span class="sub">Security Blue Team</span><span class="yr">2026</span></li>
+          <li><b>Introduction to Python</b><span class="sub">Security Blue Team</span><span class="yr">2025</span></li>
+          <li><b>Open-Source Intelligence (OSINT)</b><span class="sub">Basel Institute on Governance</span><span class="yr">2025</span></li>
+          <li><b>Advent of Cyber 2025: 24 challenges</b><span class="sub">TryHackMe</span><span class="yr">2025</span></li>
+        </ul>
+      </div>
+      <div class="stack">
+        <div>
+          <h3 class="minor">Education</h3>
+          <ul class="list">
+            <li><b>Professional Training in Network and System Security</b><span class="sub">SQI College of ICT, Ibadan</span><span class="yr">2025–26</span></li>
+            <li><b>B.A. History and Diplomatic Studies</b><span class="sub">Kwara State University, Malete</span><span class="yr">2021–25</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="minor">Research &amp; talks</h3>
+          <ul class="list">
+            <li><b>Roles, Operations and Challenges of Security in Malete, Moro LGA, Kwara State, 2009–2025</b><span class="sub">Peer-reviewed article, co-author · University of Science and Technology, Aden</span><span class="yr">2025</span></li>
+            <li><b>Institutional and Community Security Efforts Against Crime in Malete</b><span class="sub">Oral presentation · Rize International Trade &amp; Economy Congress, Türkiye</span><span class="yr">Oct 2025</span></li>
+            <li><b>Institutional and Community Security Efforts Against Crime in Malete</b><span class="sub">Oral presentation · 7th UKSEK International Congress, Ankara</span><span class="yr">Aug 2025</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" aria-labelledby="exp-h">
+    <div class="sec-head"><div><h2 id="exp-h">Experience</h2></div></div>
+    <div class="two">
+      <div class="job">
+        <ul class="list"><li><b>Computer Operator / Secretary, Legal Department</b><span class="sub">Nigeria Police Force · FCID Annex, Alagbon, Ikoyi-Lagos</span><span class="yr">2019–24</span></li></ul>
+        <ul>
+          <li>Prepared and managed official legal and investigative documents with high accuracy under deadline pressure.</li>
+          <li>Kept physical and digital case files confidential, intact and available to the people entitled to them.</li>
+          <li>Worked within strict procedural and compliance rules in a criminal-justice setting.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <p style="margin-top:0">Five years inside a criminal-justice records office taught me the daily discipline behind the CIA triad: who may see a file, how it stays unaltered, and how it is found when it is needed. I bring that habit to every system I secure.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="contact" id="contact">
+    <div>
+      <h2>Let's talk about your network.</h2>
+      <p>Hiring for a SOC, network security or cloud security role? Email is the fastest way to reach me.</p>
+    </div>
+    <div class="rows">
+      <div class="row"><span id="email">odunugaabdfattah@gmail.com</span><button class="copy" type="button" data-copy="email">Copy</button></div>
+      <div class="row"><a href="https://www.linkedin.com/in/odunugafataiolayinka" target="_blank" rel="noopener">linkedin.com/in/odunugafataiolayinka</a><small>LinkedIn</small></div>
+      <div class="row"><a href="https://github.com/S23rez" target="_blank" rel="noopener">github.com/S23rez</a><small>GitHub</small></div>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Odunuga Fatai Olayinka</span>
+    <span class="mono">Lagos, Nigeria</span>
+  </footer>
+</main>
+
+<script>
+(function () {
+  var buttons = document.querySelectorAll('.filters button');
+  var cards = document.querySelectorAll('#projects .card');
+  buttons.forEach(function (b) {
+    var f = b.getAttribute('data-f');
+    var n = f === 'all' ? cards.length : document.querySelectorAll('#projects .card[data-d="' + f + '"]').length;
+    var s = document.createElement('span'); s.className = 'n'; s.textContent = n; b.appendChild(s);
+    b.addEventListener('click', function () {
+      buttons.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      cards.forEach(function (c) { c.hidden = !(f === 'all' || c.getAttribute('data-d') === f); });
+    });
+  });
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.getElementById(btn.getAttribute('data-copy'));
+      var text = el.textContent.trim();
+      var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1800); };
+      var fallback = function () {
+        var r = document.createRange(); r.selectNodeContents(el);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        btn.textContent = 'Selected';
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else { fallback(); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
