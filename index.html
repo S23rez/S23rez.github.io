@@ -352,7 +352,195 @@ footer.colophon { padding: 36px 0 56px; font: 400 13px var(--mono); color: var(-
         </div>
         <div class="side">
           <div style="border-radius: 8px; overflow: hidden; border: 1px solid var(--line); background: var(--wash);">
-            <img src="pinnacle-architecture.svg" alt="Pinnacle ERP Architecture &amp; Dashboard: React -> Node.js -> SQLite, Linux + Caddy TLS" style="width: 100%; height: auto; display: block;" loading="lazy">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 450" width="100%" height="100%" style="display:block;">
+              <defs>
+                <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0f172a" />
+                  <stop offset="100%" stop-color="#1e293b" />
+                </linearGradient>
+                <linearGradient id="card-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#1e293b" stop-opacity="0.9" />
+                  <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95" />
+                </linearGradient>
+                <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#e3995a" />
+                  <stop offset="100%" stop-color="#f59e0b" />
+                </linearGradient>
+                <linearGradient id="node-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#10b981" />
+                  <stop offset="100%" stop-color="#06b6d4" />
+                </linearGradient>
+                <filter id="blur-kpi" x="-10%" y="-10%" width="120%" height="120%">
+                  <feGaussianBlur stdDeviation="3.5" />
+                </filter>
+                <filter id="blur-row" x="-10%" y="-10%" width="120%" height="120%">
+                  <feGaussianBlur stdDeviation="3" />
+                </filter>
+                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.4" />
+                </filter>
+              </defs>
+
+              <style>
+                .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 700; fill: #f8fafc; }
+                .mono { font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace; }
+                .muted { fill: #94a3b8; }
+                .lbl { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; fill: #94a3b8; }
+                .accent { fill: #e3995a; }
+                .ok { fill: #10b981; }
+              </style>
+
+              <!-- Background Canvas -->
+              <rect width="760" height="450" rx="10" fill="url(#bg-grad)" stroke="#334155" stroke-width="1.5" />
+
+              <!-- Top Title Bar -->
+              <rect x="0" y="0" width="760" height="38" rx="10" fill="#0b1120" />
+              <rect x="0" y="28" width="760" height="10" fill="#0b1120" />
+              <line x1="0" y1="38" x2="760" y2="38" stroke="#334155" stroke-width="1" />
+              
+              <!-- Window Controls -->
+              <circle cx="20" cy="19" r="5" fill="#ef4444" />
+              <circle cx="36" cy="19" r="5" fill="#f59e0b" />
+              <circle cx="52" cy="19" r="5" fill="#10b981" />
+
+              <!-- Window Header -->
+              <text x="75" y="23" class="mono" font-size="12" fill="#cbd5e1" font-weight="500">pinnacle-erp://distribution.internal/dashboard</text>
+              <rect x="580" y="10" width="165" height="18" rx="4" fill="#1e293b" stroke="#334155" />
+              <circle cx="592" cy="19" r="3.5" fill="#10b981" />
+              <text x="602" y="23" class="mono" font-size="10.5" fill="#94a3b8">TLS 1.3 · PRIVATE CLIENT</text>
+
+              <!-- Architecture Flow Banner -->
+              <g transform="translate(18, 50)">
+                <rect width="724" height="118" rx="8" fill="#0b1322" stroke="#1e293b" stroke-width="1.2" />
+                <text x="16" y="24" class="lbl" fill="#e3995a">Production Architecture &amp; Data Pipeline</text>
+                
+                <!-- Node 1: React UI -->
+                <rect x="16" y="38" width="145" height="64" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2" />
+                <text x="28" y="58" class="title" font-size="13">React SPA (Vite)</text>
+                <text x="28" y="74" class="mono" font-size="10" fill="#94a3b8">Session Context</text>
+                <text x="28" y="88" class="mono" font-size="9.5" fill="#38bdf8">Live RBAC Guards</text>
+
+                <!-- Connector 1 -->
+                <path d="M 161 70 L 195 70" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3 3" />
+                <polygon points="195,67 201,70 195,73" fill="#64748b" />
+
+                <!-- Node 2: Caddy TLS -->
+                <rect x="201" y="38" width="145" height="64" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.2" />
+                <text x="213" y="58" class="title" font-size="13">Caddy Reverse Proxy</text>
+                <text x="213" y="74" class="mono" font-size="10" fill="#94a3b8">Automatic TLS / ACME</text>
+                <text x="213" y="88" class="mono" font-size="9.5" fill="#10b981">Strict Security Headers</text>
+
+                <!-- Connector 2 -->
+                <path d="M 346 70 L 380 70" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3 3" />
+                <polygon points="380,67 386,70 380,73" fill="#64748b" />
+
+                <!-- Node 3: Node.js API -->
+                <rect x="386" y="38" width="150" height="64" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2" />
+                <text x="398" y="58" class="title" font-size="13">Node.js Express API</text>
+                <text x="398" y="74" class="mono" font-size="10" fill="#94a3b8">RBAC Re-verification</text>
+                <text x="398" y="88" class="mono" font-size="9.5" fill="#f59e0b">Immutable Audit Log</text>
+
+                <!-- Connector 3 -->
+                <path d="M 536 70 L 570 70" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3 3" />
+                <polygon points="570,67 576,70 570,73" fill="#64748b" />
+
+                <!-- Node 4: SQLite Database -->
+                <rect x="576" y="38" width="132" height="64" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1.2" />
+                <text x="588" y="58" class="title" font-size="13">SQLite Engine</text>
+                <text x="588" y="74" class="mono" font-size="10" fill="#94a3b8">WAL Mode (ACID)</text>
+                <text x="588" y="88" class="mono" font-size="9.5" fill="#a855f7">Encrypted Backup</text>
+              </g>
+
+              <!-- Blurred Confidential Client Dashboard Mockup -->
+              <g transform="translate(18, 180)">
+                <rect width="724" height="252" rx="8" fill="#0b1322" stroke="#1e293b" stroke-width="1.2" />
+                
+                <!-- KPI Card 1 -->
+                <g transform="translate(16, 16)">
+                  <rect width="160" height="66" rx="6" fill="#1e293b" stroke="#334155" />
+                  <text x="14" y="24" class="lbl">Total Distribution</text>
+                  <g filter="url(#blur-kpi)">
+                    <rect x="14" y="34" width="95" height="18" rx="3" fill="#38bdf8" opacity="0.8" />
+                  </g>
+                  <text x="14" y="58" class="mono" font-size="10" fill="#64748b">CONFIDENTIAL</text>
+                </g>
+
+                <!-- KPI Card 2 -->
+                <g transform="translate(192, 16)">
+                  <rect width="160" height="66" rx="6" fill="#1e293b" stroke="#334155" />
+                  <text x="14" y="24" class="lbl">Inventory Assets</text>
+                  <g filter="url(#blur-kpi)">
+                    <rect x="14" y="34" width="85" height="18" rx="3" fill="#10b981" opacity="0.8" />
+                  </g>
+                  <text x="14" y="58" class="mono" font-size="10" fill="#64748b">CONFIDENTIAL</text>
+                </g>
+
+                <!-- KPI Card 3 -->
+                <g transform="translate(368, 16)">
+                  <rect width="160" height="66" rx="6" fill="#1e293b" stroke="#334155" />
+                  <text x="14" y="24" class="lbl">Active Crates</text>
+                  <g filter="url(#blur-kpi)">
+                    <rect x="14" y="34" width="105" height="18" rx="3" fill="#f59e0b" opacity="0.8" />
+                  </g>
+                  <text x="14" y="58" class="mono" font-size="10" fill="#64748b">CONFIDENTIAL</text>
+                </g>
+
+                <!-- KPI Card 4 -->
+                <g transform="translate(544, 16)">
+                  <rect width="164" height="66" rx="6" fill="#1e293b" stroke="#334155" />
+                  <text x="14" y="24" class="lbl">System Audits</text>
+                  <text x="14" y="48" class="title" font-size="18" fill="#10b981">100% PASS</text>
+                  <text x="14" y="58" class="mono" font-size="10" fill="#64748b">IMMUTABLE LOGS</text>
+                </g>
+
+                <!-- Confidential Table Preview (Blurred) -->
+                <g transform="translate(16, 96)">
+                  <rect width="692" height="140" rx="6" fill="#0f172a" stroke="#1e293b" />
+                  <rect x="0" y="0" width="692" height="28" rx="6" fill="#1e293b" />
+                  <text x="16" y="19" class="mono" font-size="11" fill="#94a3b8">TIMESTAMP</text>
+                  <text x="160" y="19" class="mono" font-size="11" fill="#94a3b8">TRANSACTION REF</text>
+                  <text x="340" y="19" class="mono" font-size="11" fill="#94a3b8">CLIENT SKU</text>
+                  <text x="480" y="19" class="mono" font-size="11" fill="#94a3b8">VOLUME / CRATES</text>
+                  <text x="610" y="19" class="mono" font-size="11" fill="#94a3b8">STATUS</text>
+
+                  <!-- Row 1 -->
+                  <g filter="url(#blur-row)">
+                    <rect x="16" y="38" width="90" height="12" rx="2" fill="#64748b" opacity="0.6" />
+                    <rect x="160" y="38" width="120" height="12" rx="2" fill="#64748b" opacity="0.6" />
+                    <rect x="340" y="38" width="100" height="12" rx="2" fill="#64748b" opacity="0.6" />
+                    <rect x="480" y="38" width="60" height="12" rx="2" fill="#64748b" opacity="0.6" />
+                    <rect x="610" y="38" width="55" height="12" rx="2" fill="#10b981" opacity="0.7" />
+                  </g>
+
+                  <!-- Row 2 -->
+                  <g filter="url(#blur-row)">
+                    <rect x="16" y="62" width="90" height="12" rx="2" fill="#64748b" opacity="0.6" />
+                    <rect x="160" y="62" width="135" height="12" rx="2" fill="#64748b" opacity="0.6" />
+                    <rect x="340" y="62" width="110" height="12" rx="2" fill="#64748b" opacity="0.6" />
+                    <rect x="480" y="62" width="50" height="12" rx="2" fill="#64748b" opacity="0.6" />
+                    <rect x="610" y="62" width="55" height="12" rx="2" fill="#10b981" opacity="0.7" />
+                  </g>
+
+                  <!-- Row 3 -->
+                  <g filter="url(#blur-row)">
+                    <rect x="16" y="86" width="90" height="12" rx="2" fill="#64748b" opacity="0.6" />
+                    <rect x="160" y="86" width="115" height="12" rx="2" fill="#64748b" opacity="0.6" />
+                    <rect x="340" y="86" width="95" height="12" rx="2" fill="#64748b" opacity="0.6" />
+                    <rect x="480" y="86" width="70" height="12" rx="2" fill="#64748b" opacity="0.6" />
+                    <rect x="610" y="86" width="55" height="12" rx="2" fill="#38bdf8" opacity="0.7" />
+                  </g>
+
+                  <!-- Row 4 -->
+                  <g filter="url(#blur-row)">
+                    <rect x="16" y="110" width="90" height="12" rx="2" fill="#64748b" opacity="0.6" />
+                    <rect x="160" y="110" width="130" height="12" rx="2" fill="#64748b" opacity="0.6" />
+                    <rect x="340" y="110" width="105" height="12" rx="2" fill="#64748b" opacity="0.6" />
+                    <rect x="480" y="110" width="65" height="12" rx="2" fill="#64748b" opacity="0.6" />
+                    <rect x="610" y="110" width="55" height="12" rx="2" fill="#10b981" opacity="0.7" />
+                  </g>
+                </g>
+              </g>
+            </svg>
           </div>
           <div class="evidence" style="margin-top: 8px;"><span class="c"># Architecture: Client Production Deployment</span>
 React UI (Vite) <span class="k">&rarr;</span> Caddy Reverse Proxy (Auto TLS)
@@ -366,16 +554,17 @@ Host: Hardened Linux (systemd sandbox)</div>
       <article class="card" data-d="net">
         <div class="kicker"><span class="domain">Enterprise Networking</span><span class="note">Windows Server 2025 · pfSense · RADIUS</span></div>
         <h3>Enterprise IT Infrastructure Lab: Multi-Site Active Directory &amp; Network</h3>
-        <p><strong>Designed to mirror corporate multi-site IT environment</strong></p>
-        <p>A multi-site corporate infrastructure: Windows Server 2025 Active Directory behind a pfSense firewall router with centralized 802.1X RADIUS, site-to-site IPsec VPN, and Tailscale Zero-Trust mesh.</p>
-        <div class="evidence"><span class="c"># RADIUS AAA + IPsec S2S + GPO Baseline</span>
-Domain: corp.internal (Windows Server 2025 DC)
-RADIUS: pfSense &harr; Windows NPS (PEAP-MSCHAPv2)
-VPN: IPsec IKEv2 (AES-256-GCM) + Tailscale Mesh</div>
+        <p><strong>Designed to mirror corporate multi-site IT environment.</strong> Multi-site corporate infrastructure across Windows Server 2025 AD DS, pfSense firewalls, centralized RADIUS AAA, IPsec IKEv2 VPN, and Zero-Trust mesh routing.</p>
+        <div class="evidence"><span class="c"># Multi-Site Architecture &amp; ZTNA</span>
+HQ: 192.168.10.0/24    pfSense: 192.168.23.138
+Branch: 192.168.20.0/24 pfSense: 192.168.23.139
+NPS (RADIUS) <span class="k">&rarr;</span> IKEv2 IPsec (EAP-RADIUS)
+WireGuard Mesh <span class="k">&rarr;</span> Tailscale 100.106.74.113</div>
         <ul>
-          <li><strong>pfSense router firewall</strong> with segmented subnets (Management, LAN, DMZ), NAT rules, and firewall aliases.</li>
-          <li><strong>Active Directory Domain Services</strong> with GPO baselines, AppLocker restriction policies, and Tiered Admin models.</li>
-          <li><strong>Windows NPS (RADIUS)</strong> authenticating internal clients and site-to-site IPsec tunnel with internal X.509 PKI.</li>
+          <li>Departmental OUs (IT, Management, Marketing, Sales) with deletion protection and PowerShell least-privilege password delegation.</li>
+          <li>Windows NPS (RADIUS) authenticates remote engineers over enterprise IPsec IKEv2 VPN with internal X.509 PKI certificates.</li>
+          <li>Tailscale WireGuard Zero-Trust overlay router for secure out-of-band administration without exposing RDP to WAN.</li>
+          <li>GPOs enforcing password length, idle machine lockouts (5 min) and restricted Control Panel, pushed with <span class="mono">gpupdate /force</span>.</li>
         </ul>
         <div class="tags"><span>Windows Server 2025</span><span>AD DS</span><span>pfSense</span><span>RADIUS / NPS</span><span>IPsec IKEv2</span><span>Tailscale</span><span>GPO</span></div>
         <div class="links"><a href="https://github.com/S23rez/Active-Directory-Project" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
@@ -385,8 +574,7 @@ VPN: IPsec IKEv2 (AES-256-GCM) + Tailscale Mesh</div>
       <article class="card" data-d="soc">
         <div class="kicker"><span class="domain">IT Monitoring &amp; Operations</span><span class="note">Local SOC · Suricata · osquery</span></div>
         <h3>Elastic Stack Mini-SOC</h3>
-        <p><strong>Designed for IT operations monitoring - logs, alerts, and dashboards</strong></p>
-        <p>A zero-cloud, self-hosted security monitoring lab. Real network intrusion detection (Suricata NIDS) and host telemetry (osquery) streaming into an Elasticsearch + Logstash + Kibana pipeline.</p>
+        <p><strong>Designed for IT operations monitoring - logs, alerts, and dashboards.</strong> Zero-cloud, local SOC infrastructure ingesting network flow alerts, endpoint host telemetry, and server runtime logs with custom Grok/JSON pipelines and Kibana detection rules.</p>
         <div class="evidence"><span class="c"># Suricata EVE JSON &rarr; Logstash &rarr; Kibana</span>
 Input: file { path =&gt; "/var/log/suricata/eve.json" codec =&gt; "json" }
 Filter: grok / geoip / mutate { add_tag =&gt; [ "nids_alert" ] }
@@ -441,8 +629,7 @@ Pipeline: GitHub Actions &rarr; Azure Static Web Apps</div>
       <article class="card" data-d="dev">
         <div class="kicker"><span class="domain">Software Development &amp; Applied AI</span><span class="note">Python · Flask · Compliance</span></div>
         <h3>Medicare Hospital Management System - HIPAA-Compliant</h3>
-        <p><strong>Patient records, appointments, and access controls with HIPAA data handling.</strong></p>
-        <p>A full-stack clinical operations platform architected with strict access controls, session hardening, and role-based access for Doctors, Patients, and Administrators.</p>
+        <p><strong>Patient records, appointments, and access controls with HIPAA data handling.</strong> A full-stack clinical operations platform architected with strict access controls, session hardening, and role-based access for Doctors, Patients, and Administrators.</p>
         <div class="evidence"><span class="c"># Medical record isolation &amp; audit trail</span>
 Role Guard: @require_role(["Doctor", "Admin"])
 Data Sanitization: Bleach + Pydantic validators
@@ -460,8 +647,7 @@ Session: SameSite=Strict, HttpOnly, Secure</div>
       <article class="card" data-d="dev">
         <div class="kicker"><span class="domain">Software Development &amp; Applied AI</span><span class="note">Python · Flask · Web Defense</span></div>
         <h3>ShopHub: Transactional E-Commerce System</h3>
-        <p><strong>Orders, inventory, and payments with ACID transactional integrity.</strong></p>
-        <p>A transactional e-commerce engine built with robust validation, checkout state management, atomic database transactions, and client session security.</p>
+        <p><strong>Orders, inventory, and payments with ACID transactional integrity.</strong> A transactional e-commerce engine built with robust validation, checkout state management, atomic database transactions, and client session security.</p>
         <div class="evidence"><span class="c"># Transactional integrity &amp; rate limit</span>
 Order Commit: db.session.begin_nested() &rarr; lock stock
 Integrity: Idempotent payment verification token
