@@ -165,6 +165,17 @@ section { padding-block: clamp(48px, 7vw, 80px) 0; scroll-margin-top: 64px; }
 .list .sub { grid-column: 1; color: var(--muted); font-size: 14.5px; }
 .list time, .list .yr { font: 400 13.5px/1.6 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; grid-row: 1; grid-column: 2; }
 .list li.hl b::after { content: "Certification"; margin-left: 8px; font: 500 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 3px 6px; border-radius: 4px; vertical-align: 2px; }
+.list li.hl-research b::after { content: "Peer-Reviewed"; margin-left: 8px; font: 500 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ok); background: color-mix(in srgb, var(--ok) 18%, transparent); padding: 3px 6px; border-radius: 4px; vertical-align: 2px; }
+details.cert-drawer { margin-top: 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); overflow: hidden; }
+details.cert-drawer summary { padding: 12px 14px; cursor: pointer; font: 600 14px/1.4 var(--body); color: var(--ink); user-select: none; background: var(--wash); display: flex; align-items: center; justify-content: space-between; }
+details.cert-drawer summary:hover { color: var(--accent); }
+details.cert-drawer[open] summary { border-bottom: 1px solid var(--line); }
+details.cert-drawer .drawer-content { padding: 14px; }
+details.cert-drawer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+details.cert-drawer li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 13.5px; padding-bottom: 7px; border-bottom: 1px dashed var(--line); }
+details.cert-drawer li:last-child { border-bottom: none; padding-bottom: 0; }
+details.cert-drawer .cert-name { color: var(--ink); }
+details.cert-drawer .cert-issuer { color: var(--muted); font-family: var(--mono); font-size: 12px; white-space: nowrap; flex: none; }
 h3.minor { font: 600 20px/1.2 var(--display); margin: 0 0 12px; }
 .stack { display: grid; gap: 36px; }
 .job p { margin: 10px 0 0; color: var(--muted); }
@@ -224,6 +235,7 @@ footer { padding-block: 28px 40px; color: var(--muted); font-size: 13.5px; displ
       <h1>Fatai<br>Odunuga</h1>
       <p class="role"><span>Network &amp; Systems Security Analyst</span> · <span>Cloud Security Engineer</span> · <span>Automation Developer</span></p>
       <p class="lede">I design, administer and defend enterprise infrastructure: segmented Cisco networks, multi-site Windows Server 2025 Active Directory behind pfSense firewalls, centralized RADIUS AAA, and Zero-Trust mesh overlay routing. In the cloud, I secure AWS and Azure environments across 19 security labs and DevSecOps pipelines. I build custom <strong>Python detection engines, SecOps APIs and SIEM platforms</strong> mapped to <strong>MITRE ATT&amp;CK</strong>, with interactive 3D WebGL visualization.</p>
+      <p style="margin-top: 14px; font-weight: 500; color: var(--accent); font-family: var(--display); font-size: 18px; letter-spacing: 0.01em;">MS in Information Technology applicant &mdash; Enterprise IT, Cloud Infrastructure, and Information Systems.</p>
       <div class="cta">
         <a class="btn primary" href="#work">See the work</a>
         <a class="btn" href="https://github.com/S23rez" target="_blank" rel="noopener">
@@ -277,36 +289,37 @@ footer { padding-block: 28px 40px; color: var(--muted); font-size: 13.5px; displ
 
     <div class="grid" id="projects">
 
-      <!-- 1. FEATURE CARD: Project Sentinel -->
-      <article class="card feature" data-d="soc">
+      <!-- 1. FEATURE CARD: Pinnacle ERP -->
+      <article class="card feature" data-d="dev">
         <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
-          <div class="kicker"><span class="domain">Detection &amp; SOC</span><span class="note">Python · SQLite · Three.js WebGL</span></div>
-          <h3>Project Sentinel: full-stack security monitor &amp; 3D SOC</h3>
-          <p>A pure-Python modular threat engine that monitors network ports, file integrity and application web logs in real time, mapped directly to ATT&amp;CK with an interactive 3D WebGL Command Center.</p>
+          <div class="kicker"><span class="domain">Software Development &amp; Applied AI</span><span class="note">React · Node.js · Client System</span></div>
+          <h3>Pinnacle ERP - Full-Stack Inventory &amp; Sales System for a Beverage Distributor</h3>
+          <p><strong>Built for a real client - manages inventory, sales, returns, audit logs, and user roles for a beverage distribution business.</strong></p>
           <ul>
-            <li>Parallel TCP socket port scanning (T1046), SHA-256 cryptographic File Integrity Monitoring (T1565.001) and multi-format log analysis (Nginx, Apache, Syslog, JSON).</li>
-            <li>Detects SQLi (T1190), XSS (T1189), path traversal (T1083), command injection (T1059) and rate-based brute-force authentication floods (T1110).</li>
-            <li>Hardened Red Team defense against evasion payloads using double-URL decoding (unquote) and HTML entity unescaping.</li>
-            <li>Interactive 3D WebGL Three.js Command Center featuring an interactive Cyber Globe, animated laser threat beams targeting endpoints and dynamic 0–100 risk scoring.</li>
+            <li>Role-based access control (RBAC) re-checked against live user sessions on every request, forced change of default credentials, and one-time password recovery codes.</li>
+            <li>Comprehensive immutable audit logs recording every state change, atomic transactional operations, and specialized sale-or-return reconciliation workflows.</li>
+            <li>Hardened Linux production deployment behind Caddy TLS reverse proxy with sandboxed systemd service isolation and automated encrypted off-site backups.</li>
           </ul>
+          <div class="tags"><span>React</span><span>Node.js</span><span>SQLite</span><span>Caddy TLS</span><span>Linux Hardening</span><span>RBAC</span><span>ACID</span></div>
+          <div class="links"><span class="private">Private repository (client work)</span></div>
         </div>
         <div class="side">
-          <div class="evidence" aria-label="ATT&amp;CK techniques covered"><span class="c"># findings mapped to MITRE ATT&amp;CK</span>
-<span class="k">T1046</span>  Network Service Discovery
-<span class="k">T1190</span>  Exploit Public-Facing App (SQLi/XSS)
-<span class="k">T1110</span>  Brute Force &amp; Auth Floods
-<span class="k">T1059</span>  Command &amp; Scripting Interpreter
-<span class="k">T1565</span>  File Integrity Tampering (SHA-256)</div>
-          <div class="tags"><span>Python 3.14</span><span>SQLite</span><span>Three.js</span><span>MITRE ATT&amp;CK</span><span>FIM</span></div>
-          <div class="links"><a href="https://github.com/S23rez/sentinel-monitor" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
+          <div style="border-radius: 8px; overflow: hidden; border: 1px solid var(--line); background: var(--wash);">
+            <img src="pinnacle-architecture.svg" alt="Pinnacle ERP Architecture &amp; Dashboard: React -> Node.js -> SQLite, Linux + Caddy TLS" style="width: 100%; height: auto; display: block;" loading="lazy">
+          </div>
+          <div class="evidence" style="margin-top: 8px;"><span class="c"># Architecture: Client Production Deployment</span>
+React UI (Vite) <span class="k">&rarr;</span> Caddy Reverse Proxy (Auto TLS)
+<span class="k">&rarr;</span> Node.js / Express API (RBAC &amp; Audit Logs)
+<span class="k">&rarr;</span> SQLite WAL Engine (ACID Integrity)
+Host: Hardened Linux (systemd sandbox)</div>
         </div>
       </article>
 
-      <!-- 2. Active Directory Enterprise Lab -->
+      <!-- 2. Enterprise Active Directory Lab -->
       <article class="card" data-d="net">
-        <div class="kicker"><span class="domain">Network &amp; AD</span><span class="note">Windows Server 2025 · pfSense · RADIUS</span></div>
-        <h3>Enterprise Active Directory &amp; perimeter security lab</h3>
-        <p>A multi-site corporate infrastructure across Windows Server 2025 AD DS, pfSense firewalls, centralized RADIUS AAA, IPsec IKEv2 VPN, and Zero-Trust mesh routing.</p>
+        <div class="kicker"><span class="domain">Enterprise Networking</span><span class="note">Windows Server 2025 · pfSense · RADIUS</span></div>
+        <h3>Enterprise IT Infrastructure Lab: Multi-Site Active Directory &amp; Network</h3>
+        <p><strong>Designed to mirror corporate multi-site IT environment.</strong> Multi-site corporate infrastructure across Windows Server 2025 AD DS, pfSense firewalls, centralized RADIUS AAA, IPsec IKEv2 VPN, and Zero-Trust mesh routing.</p>
         <div class="evidence"><span class="c"># Multi-Site Architecture &amp; ZTNA</span>
 HQ: 192.168.10.0/24    pfSense: 192.168.23.138
 Branch: 192.168.20.0/24 pfSense: 192.168.23.139
@@ -324,9 +337,9 @@ WireGuard Mesh <span class="k">&rarr;</span> Tailscale 100.106.74.113</div>
 
       <!-- 3. Elastic Stack Mini-SOC -->
       <article class="card" data-d="soc">
-        <div class="kicker"><span class="domain">Detection &amp; SOC</span><span class="note">Elastic Stack · zero cloud</span></div>
+        <div class="kicker"><span class="domain">IT Monitoring &amp; Operations</span><span class="note">Elastic Stack · zero cloud</span></div>
         <h3>Elastic Stack mini-SOC: multi-layer telemetry</h3>
-        <p>A local SOC correlating network NIDS alerts, endpoint telemetry and container logs into unified indices with real-time detection rules.</p>
+        <p><strong>Designed for IT operations monitoring - logs, alerts, and dashboards.</strong> A local SOC correlating network NIDS alerts, endpoint telemetry and container logs into unified indices with real-time detection rules.</p>
         <div class="evidence"><span class="c"># query rule, runs every 1m on suricata-*</span>
 event.dataset: "suricata"
   AND suricata.eve.alert.severity <span class="k">&lt;= 2</span></div>
@@ -339,10 +352,10 @@ event.dataset: "suricata"
         <div class="links"><a href="https://github.com/S23rez/Elastic-Mini-SOC" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
       </article>
 
-      <!-- 4. AWS Cloud Security (19 Labs) -->
+      <!-- 4. AWS Cloud Infrastructure Architecture - 19 Labs -->
       <article class="card" data-d="cloud">
-        <div class="kicker"><span class="domain">Cloud</span><span class="note">19 labs · AWS security architecture</span></div>
-        <h3>AWS cloud architecture &amp; security engineering</h3>
+        <div class="kicker"><span class="domain">Cloud Infrastructure</span><span class="note">19 labs · AWS security architecture</span></div>
+        <h3>AWS Cloud Infrastructure Architecture - 19 Labs</h3>
         <p>A 19-lab series on building resilient VPCs, cryptographic key vaults, threat detection and zero-internet-exposure transit endpoints.</p>
         <div class="evidence"><span class="c"># KMS CMK envelope encryption &amp; VPC isolation</span>
 KMS Key: arn:aws:kms:...:key/cmk-db-vault
@@ -357,10 +370,10 @@ PrivateLink Endpoints: com.amazonaws.vpce.*</div>
         <div class="links"><a href="https://github.com/S23rez/Cloud-Projects/tree/main/aws-labs" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
       </article>
 
-      <!-- 5. Azure Identity & DevSecOps -->
+      <!-- 5. Azure Cloud Infrastructure, Identity & CI/CD -->
       <article class="card" data-d="cloud">
-        <div class="kicker"><span class="domain">Cloud</span><span class="note">Microsoft Azure · DevSecOps</span></div>
-        <h3>Azure identity governance, VM defense &amp; CI/CD</h3>
+        <div class="kicker"><span class="domain">Cloud Infrastructure</span><span class="note">Microsoft Azure · DevSecOps</span></div>
+        <h3>Azure Cloud Infrastructure, Identity &amp; CI/CD</h3>
         <p>Enterprise cloud identity first, hardened virtual network infrastructure, and an automated GitOps deployment pipeline.</p>
         <div class="evidence"><span class="c"># Entra ID RBAC + Trusted Launch VM</span>
 Role: Contributor (Scoped to RG-SecNet)
@@ -375,10 +388,47 @@ CI/CD: GitHub Actions <span class="k">&rarr;</span> Azure Static Web Apps</div>
         <div class="links"><a href="https://github.com/S23rez/Cloud-Projects/tree/main/azure-labs" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
       </article>
 
-      <!-- 6. SecOps Automation & Gatekeeper API -->
+      <!-- 6. Medicare Hospital Management System -->
+      <article class="card" data-d="dev">
+        <div class="kicker"><span class="domain">Software Development &amp; Applied AI</span><span class="note">Python · SQLite · HIPAA Compliance</span></div>
+        <h3>Medicare Hospital Management System - HIPAA-Compliant</h3>
+        <p><strong>Patient records, appointments, and access controls with HIPAA data handling.</strong> A modular healthcare management system with strict role-based access control, medical record privacy boundaries and automated unit testing.</p>
+        <div class="evidence"><span class="c"># HIPAA patient privacy enforcement</span>
+<span class="k">if not</span> has_appointment(doctor_id, patient_id):
+    <span class="k">raise</span> UnauthorizedAccessException(<span class="c">"Access Denied"</span>)
+<span class="c"># Automated verification: 4/4 passing (test_system.py)</span></div>
+        <ul>
+          <li>Doctors can only access records of patients with active/past appointments; unauthorized access attempts are blocked at the query level.</li>
+          <li>Role-segregated CLI menus across 4 distinct actors (Admin, Doctor, Receptionist, Patient) with administrative dynamic fee governance.</li>
+          <li>Full unit test suite (<span class="mono">test_system.py</span>) validating doctor fee controls, appointment booking, billing math, and HIPAA access boundaries.</li>
+        </ul>
+        <div class="tags"><span>Python</span><span>SQLite</span><span>HIPAA</span><span>RBAC</span><span>Unit Testing</span></div>
+        <div class="links"><a href="https://github.com/S23rez/Python-Projects/tree/main/cli-applications/medicare_hospital_system" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
+      </article>
+
+      <!-- 7. ShopHub: Transactional E-Commerce System -->
+      <article class="card" data-d="dev">
+        <div class="kicker"><span class="domain">Software Development &amp; Applied AI</span><span class="note">Python · SQLite · ACID Integrity</span></div>
+        <h3>ShopHub: Transactional E-Commerce System</h3>
+        <p><strong>Orders, inventory, and payments with ACID transactional integrity.</strong> A relational e-commerce management platform enforcing atomic checkout transactions, inventory race condition protection, and regex sanitization.</p>
+        <div class="evidence"><span class="c"># Atomic ACID checkout pipeline</span>
+<span class="k">BEGIN TRANSACTION</span>;
+UPDATE inventory SET stock = stock - ? WHERE id = ?;
+<span class="c">-- Rollback immediately on inventory underflow</span>
+<span class="k">COMMIT</span>;</div>
+        <ul>
+          <li>Atomic database transactions (<span class="mono">BEGIN</span> / <span class="mono">COMMIT</span> / <span class="mono">ROLLBACK</span>) that prevent inventory overselling and concurrency conflicts.</li>
+          <li>Defensive regex input validation enforcing RFC-compliant email, exactly 11-digit phone numbers, and length-enforced credentials.</li>
+          <li>Administrative business intelligence audits: revenue calculations, low stock triggers (&lt;10 items) and customer spend rankings.</li>
+        </ul>
+        <div class="tags"><span>Python</span><span>SQLite</span><span>ACID</span><span>Data Integrity</span><span>Input Sanitization</span></div>
+        <div class="links"><a href="https://github.com/S23rez/Python-Projects/tree/main/cli-applications/ShopHub" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
+      </article>
+
+      <!-- 8. SecOps Automation -->
       <article class="card" data-d="soc">
-        <div class="kicker"><span class="domain">Detection &amp; SOC</span><span class="note">FastAPI · Flask · Python</span></div>
-        <h3>SecOps automation &amp; incident response suite</h3>
+        <div class="kicker"><span class="domain">IT Automation &amp; DevOps</span><span class="note">FastAPI · Flask · Python</span></div>
+        <h3>IT Automation &amp; Incident Response Suite (FastAPI / Flask / Python)</h3>
         <p>Automated security triage endpoints, real-time log dashboards and network reconnaissance tools that replace manual analyst intervention.</p>
         <div class="evidence"><span class="c"># FastAPI SecOps Gatekeeper (@app.post)</span>
 <span class="k">if</span> alert.severity_score &gt;= 8:
@@ -393,10 +443,10 @@ CI/CD: GitHub Actions <span class="k">&rarr;</span> Azure Static Web Apps</div>
         <div class="links"><a href="https://github.com/S23rez/Python-Projects/tree/main/automation-scripts" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
       </article>
 
-      <!-- 7. Enterprise Network Security Lab -->
+      <!-- 9. Enterprise Networking -->
       <article class="card" data-d="net">
-        <div class="kicker"><span class="domain">Network</span><span class="note">GNS3 · Cisco vIOS &amp; IOS 15.9</span></div>
-        <h3>Enterprise network security &amp; inter-VLAN routing</h3>
+        <div class="kicker"><span class="domain">Enterprise Networking</span><span class="note">GNS3 · Cisco vIOS &amp; IOS 15.9</span></div>
+        <h3>Enterprise Networking &amp; Inter-VLAN Routing (GNS3 / Cisco)</h3>
         <p>A four-zone segmented enterprise network where policy is enforced via named extended ACLs and proven through deep-packet Wireshark captures.</p>
         <div class="evidence">Users   10.0.10.0/24   <span class="c">medium trust</span>
 Servers 10.0.20.0/24   <span class="c">restricted</span>
@@ -413,88 +463,59 @@ DMZ     10.0.40.0/24   <span class="c">untrusted</span>
         <div class="links"><a href="https://github.com/S23rez/Network-Projects" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
       </article>
 
-      <!-- 8. Medicare Hospital Management System -->
+      <!-- 10. Mini-LLM QA Engine -->
       <article class="card" data-d="dev">
-        <div class="kicker"><span class="domain">Software &amp; AI</span><span class="note">Python · SQLite · HIPAA Compliance</span></div>
-        <h3>Medicare hospital management system (HIPAA-aligned)</h3>
-        <p>A modular healthcare management system with strict role-based access control, medical record privacy boundaries and automated unit testing.</p>
-        <div class="evidence"><span class="c"># HIPAA patient privacy enforcement</span>
-<span class="k">if not</span> has_appointment(doctor_id, patient_id):
-    <span class="k">raise</span> UnauthorizedAccessException(<span class="c">"Access Denied"</span>)
-<span class="c"># Automated verification: 4/4 passing (test_system.py)</span></div>
+        <div class="kicker"><span class="domain">Software Development &amp; Applied AI</span><span class="note">Google Gemini 2.5 Flash · Python</span></div>
+        <h3>Mini-LLM QA Engine</h3>
+        <p>A context-grounded Question-Answering application powered by Google Gemini 2.5 Flash with secret isolation and anti-hallucination guardrails.</p>
+        <div class="evidence"><span class="c"># Grounded Gemini 2.5 Flash QA Engine</span>
+Knowledge Base <span class="k">&rarr;</span> Domain Context Grounding
+google-genai SDK <span class="k">&rarr;</span> Gemini 2.5 Flash
+Guardrails <span class="k">&rarr;</span> Zero-Hallucination Fallback</div>
         <ul>
-          <li>Doctors can only access records of patients with active/past appointments; unauthorized access attempts are blocked at the query level.</li>
-          <li>Role-segregated CLI menus across 4 distinct actors (Admin, Doctor, Receptionist, Patient) with administrative dynamic fee governance.</li>
-          <li>Full unit test suite (<span class="mono">test_system.py</span>) validating doctor fee controls, appointment booking, billing math, and HIPAA access boundaries.</li>
+          <li>High-performance context-grounded generation using the official <span class="mono">google-genai</span> SDK and Gemini 2.5 Flash model.</li>
+          <li>Strict anti-hallucination guardrails conditioning completions on verified company and services knowledge bases.</li>
+          <li>Interactive CLI query agent with environment variable secret isolation via <span class="mono">python-dotenv</span>.</li>
         </ul>
-        <div class="tags"><span>Python</span><span>SQLite</span><span>HIPAA</span><span>RBAC</span><span>Unit Testing</span></div>
-        <div class="links"><a href="https://github.com/S23rez/Python-Projects/tree/main/cli-applications/medicare_hospital_system" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
+        <div class="tags"><span>Python 3.10+</span><span>Google Gemini</span><span>google-genai</span><span>RAG</span><span>LLM Guardrails</span></div>
+        <div class="links"><a href="https://github.com/S23rez/AI-Projects/tree/main/Mini-LLM" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
       </article>
 
-      <!-- 9. ShopHub ACID Transaction Platform -->
-      <article class="card" data-d="dev">
-        <div class="kicker"><span class="domain">Software &amp; AI</span><span class="note">Python · SQLite · ACID Integrity</span></div>
-        <h3>ShopHub: transactional e-commerce engine</h3>
-        <p>A relational e-commerce management platform enforcing atomic checkout transactions, inventory race condition protection, and regex sanitization.</p>
-        <div class="evidence"><span class="c"># Atomic ACID checkout pipeline</span>
-<span class="k">BEGIN TRANSACTION</span>;
-UPDATE inventory SET stock = stock - ? WHERE id = ?;
-<span class="c">-- Rollback immediately on inventory underflow</span>
-<span class="k">COMMIT</span>;</div>
+      <!-- 11. Kubernetes & Terraform -->
+      <article class="card" data-d="cloud">
+        <div class="kicker"><span class="domain">Cloud Infrastructure</span><span class="note">Kubernetes · Terraform · IaC</span></div>
+        <h3>Kubernetes &amp; Terraform Infrastructure-as-Code</h3>
+        <p>Declarative cluster orchestration, Zero-Trust NetworkPolicies, and Pod Security Standards for hardened container workloads.</p>
+        <div class="evidence"><span class="c"># Pod Security Standards (Restricted)</span>
+securityContext:
+  runAsNonRoot: true
+  readOnlyRootFilesystem: true
+  capabilities: { drop: ["ALL"] }
+<span class="c"># NetworkPolicy: Default-Deny Ingress/Egress</span></div>
         <ul>
-          <li>Atomic database transactions (<span class="mono">BEGIN</span> / <span class="mono">COMMIT</span> / <span class="mono">ROLLBACK</span>) that prevent inventory overselling and concurrency conflicts.</li>
-          <li>Defensive regex input validation enforcing RFC-compliant email, exactly 11-digit phone numbers, and length-enforced credentials.</li>
-          <li>Administrative business intelligence audits: revenue calculations, low stock triggers (&lt;10 items) and customer spend rankings.</li>
+          <li>Pod Security Standards enforcement preventing privilege escalation, enforcing unprivileged UIDs, and locking down root filesystems.</li>
+          <li>East-West micro-segmentation with Kubernetes NetworkPolicies enforcing default-deny ingress/egress across namespace boundaries.</li>
+          <li>HashiCorp Terraform declarative Infrastructure-as-Code baselines for reproducible, secure cloud resource provisioning.</li>
         </ul>
-        <div class="tags"><span>Python</span><span>SQLite</span><span>ACID</span><span>Data Integrity</span><span>Input Sanitization</span></div>
-        <div class="links"><a href="https://github.com/S23rez/Python-Projects/tree/main/cli-applications/ShopHub" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
+        <div class="tags"><span>Kubernetes</span><span>Terraform</span><span>IaC</span><span>NetworkPolicy</span><span>Pod Security</span><span>RBAC</span></div>
+        <div class="links"><a href="https://github.com/S23rez/Cloud-Projects/tree/main/kubernetes-manifests" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
       </article>
 
-      <!-- 10. Autonomous AI News & Threat Aggregator -->
-      <article class="card" data-d="dev">
-        <div class="kicker"><span class="domain">Software &amp; AI</span><span class="note">Python · LangChain · Docker Compose</span></div>
-        <h3>Autonomous multi-agent AI intelligence aggregator</h3>
-        <p>An autonomous multi-agent pipeline that scrapes, scores, curates, and synthesizes intelligence bulletins from leading research labs and media feeds.</p>
-        <div class="evidence"><span class="c"># Multi-agent intelligence pipeline</span>
-Scrapers <span class="k">&rarr;</span> CuratorAgent (Filter &amp; Score)
-         <span class="k">&rarr;</span> DigestAgent (Structured Briefing)
-         <span class="k">&rarr;</span> EmailAgent (HTML Digest) <span class="k">&rarr;</span> Dispatch</div>
-        <ul>
-          <li>Scraper layer extracting research posts from Anthropic, OpenAI bulletins, and YouTube video audio transcripts.</li>
-          <li>Autonomous LLM agent pipeline: Curator Agent filters signal from noise, Digest Agent synthesizes technical summaries, Email Agent formats newsletters.</li>
-          <li>Relational persistence using PostgreSQL and SQLAlchemy repository pattern; containerized deployment with Docker Compose.</li>
-        </ul>
-        <div class="tags"><span>Python</span><span>LangChain</span><span>Multi-Agent</span><span>PostgreSQL</span><span>Docker Compose</span></div>
-        <div class="links"><a href="https://github.com/S23rez/AI-Projects/tree/main/ai-news-aggregator" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
-      </article>
-
-      <!-- 11. SmartTech Enterprise Network Simulation -->
+      <!-- 12. Packet Tracer Labs -->
       <article class="card" data-d="net">
-        <div class="kicker"><span class="domain">Network</span><span class="note">Cisco Packet Tracer</span></div>
-        <h3>SmartTech enterprise network simulation</h3>
-        <p>An end-to-end office network with central services, role-based file access and smart-building devices.</p>
+        <div class="kicker"><span class="domain">Enterprise Networking</span><span class="note">Cisco Packet Tracer</span></div>
+        <h3>Packet Tracer Labs: Enterprise Network Simulation</h3>
+        <p>An end-to-end multi-layer office network simulation with centralized services, role-based access, and smart-building infrastructure.</p>
         <div class="evidence">net 192.168.10.0/24   gw <span class="k">.1</span>   server <span class="k">.2</span>
-services: DHCP · DNS · HTTP · FTP (RBAC) · email · IoT</div>
+services: DHCP · DNS · HTTP · FTP (RBAC) · email · IoT
+Fault Diagnosis: DHCP lease misdirection fixed</div>
         <ul>
-          <li>Edge router, multilayer core and Admin, IT and Management switches plus an IoT branch.</li>
+          <li>Edge router, multilayer core and Admin, IT and Management switches plus an IoT smart-building branch.</li>
           <li>Configured central DHCP, DNS, HTTP, FTP (role-based access) and email services; diagnosed and fixed a DHCP lease misdirection fault.</li>
+          <li>Device security hardening, port security, SSH interface terminal configurations, and VLAN segmentation.</li>
         </ul>
-        <div class="tags"><span>DHCP</span><span>DNS</span><span>RBAC</span><span>IoT</span><span>Packet Tracer</span></div>
+        <div class="tags"><span>Packet Tracer</span><span>Cisco IOS</span><span>DHCP</span><span>DNS</span><span>RBAC</span><span>IoT</span></div>
         <div class="links"><a href="https://github.com/S23rez/Network-Projects/tree/main/packet-tracer-labs" target="_blank" rel="noopener">Repository <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div>
-      </article>
-
-      <!-- 12. Pinnacle ERP -->
-      <article class="card" data-d="dev">
-        <div class="kicker"><span class="domain">Software &amp; AI</span><span class="note">Client project</span></div>
-        <h3>Pinnacle ERP: secure inventory &amp; sales system</h3>
-        <p>A full-stack ERP for a beverage distributor, built with security controls and audit trails from the start.</p>
-        <ul>
-          <li>Role-based access re-checked against the live user on every request, forced change of default passwords and one-time recovery codes.</li>
-          <li>Audit log of every change, transactional saves and a sale-or-return settlement flow.</li>
-          <li>Linux deployment behind Caddy TLS with a sandboxed systemd service and encrypted off-site backups.</li>
-        </ul>
-        <div class="tags"><span>React</span><span>Node.js</span><span>SQLite</span><span>RBAC</span><span>Linux Hardening</span></div>
-        <div class="links"><span class="private">Private repository (client work)</span></div>
       </article>
 
     </div>
@@ -502,25 +523,24 @@ services: DHCP · DNS · HTTP · FTP (RBAC) · email · IoT</div>
     <div class="more">
       <h3>Also on GitHub</h3>
       <ul>
+        <li><a href="https://github.com/S23rez/sentinel-monitor" target="_blank" rel="noopener">Project Sentinel: Full-Stack Security Monitor &amp; 3D SOC</a><span>Modular Python threat engine, FIM, log analysis mapped to MITRE ATT&amp;CK, with 3D WebGL Command Center.</span></li>
+        <li><a href="https://github.com/S23rez/AI-Projects/tree/main/ai-news-aggregator" target="_blank" rel="noopener">Autonomous AI News &amp; Threat Aggregator</a><span>Autonomous multi-agent pipeline scraping, scoring, and synthesizing intelligence bulletins with LangChain &amp; Docker.</span></li>
+        <li><a href="https://github.com/S23rez/Cloud-Projects/tree/main/Docker" target="_blank" rel="noopener">Containerized IT Services &amp; Automation</a><span>Hardened Dockerfile specifications using python:3.11-slim, plus cloud server telemetry probes.</span></li>
         <li><a href="https://github.com/S23rez/Cloud-Projects/tree/main/CI-CD%20Pipeline/T.O.C-Online-Fashion-Store" target="_blank" rel="noopener">TOC DevSecOps Storefront</a><span>React, Vite, Firebase Auth, and Docker containerization deployed through GitHub Actions to Azure Static Web Apps.</span></li>
         <li><a href="https://github.com/S23rez/Network-Projects/tree/main/gns3-topologies" target="_blank" rel="noopener">GNS3 Multi-Router Routing Labs</a><span>Static routing and multi-subnet topologies with terminal logs and Wireshark <span class="mono">.pcapng</span> packet captures.</span></li>
-        <li><a href="https://github.com/S23rez/Network-Projects/tree/main/packet-tracer-labs" target="_blank" rel="noopener">Packet Tracer CCNA Labs</a><span>Device security, OSPF routing, VLAN switching, IPv4 addressing and SSH interface configurations.</span></li>
-        <li><a href="https://github.com/S23rez/AI-Projects/tree/main/Mini-LLM" target="_blank" rel="noopener">Mini-LLM QA Engine</a><span>Context-grounded Question-Answering on Google Gemini 2.5 Flash with secret isolation via python-dotenv.</span></li>
-        <li><a href="https://github.com/S23rez/Cloud-Projects/tree/main/Docker" target="_blank" rel="noopener">Container Security &amp; Automation</a><span>Hardened Dockerfile specifications using python:3.11-slim, plus cloud server telemetry probes.</span></li>
-        <li><a href="https://github.com/S23rez/Cloud-Projects/tree/main/kubernetes-manifests" target="_blank" rel="noopener">Kubernetes &amp; Terraform Baselines</a><span>Pod Security Standards, declarative NetworkPolicies, and HashiCorp Terraform infrastructure-as-code hardening.</span></li>
       </ul>
     </div>
   </section>
 
   <section id="skills" aria-labelledby="skills-h">
-    <div class="sec-head"><div><h2 id="skills-h">Skills</h2><p>What I use across the laboratories above, structured across core security domains.</p></div></div>
+    <div class="sec-head"><div><h2 id="skills-h">Skills</h2><p>What I use across the laboratories above, structured across core security domains.<br>Enterprise IT labs in networking, Windows Server / Active Directory, cloud infrastructure, and automation &mdash; built for MS in Information Technology.</p></div></div>
     <div class="skills">
-      <div class="skill"><h3>Network &amp; Perimeter Defense</h3><p>Cisco IOS routers and switches, VLAN segmentation, inter-VLAN routing, ACLs, pfSense CE stateful firewalls, Windows NPS (RADIUS AAA), IPsec IKEv2 VPN, Tailscale WireGuard ZTNA, GNS3, Wireshark PCAPs.</p></div>
-      <div class="skill"><h3>SIEM &amp; Security Monitoring</h3><p>Project Sentinel (Python / 3D WebGL), Elastic Stack (Logstash, Kibana), Suricata NIDS, osquery host telemetry, File Integrity Monitoring (SHA-256 FIM), MITRE ATT&amp;CK, rate-based anomaly detection.</p></div>
-      <div class="skill"><h3>Identity &amp; Systems Security</h3><p>Windows Server 2025 AD DS, departmental OUs, least-privilege delegation, Group Policy (GPO), Microsoft Entra ID (Azure AD), RBAC, MFA, HIPAA data isolation, Linux user permissions, systemd, SSH hardening.</p></div>
-      <div class="skill"><h3>Cloud Security Architecture</h3><p>AWS (19 Labs: IAM least privilege, KMS CMK envelope encryption, Secrets Manager, GuardDuty, VPC Flow Logs, PrivateLink Endpoints, S3, Aurora, DynamoDB); Azure (NSGs, VMs, Bastion, Defender for Cloud); OCI.</p></div>
-      <div class="skill"><h3>SecOps Automation &amp; DevSecOps</h3><p>Python 3.11+ (FastAPI, Flask, Sockets, Threading, Pydantic), Bash, PowerShell, Docker containerization, Kubernetes (Minikube), GitHub Actions CI/CD, Git.</p></div>
-      <div class="skill"><h3>Software Integrity &amp; AI</h3><p>ACID transactions, SQL injection prevention, regex sanitization, unit testing, OWASP Top 10 defense, Multi-Agent AI Pipelines (LangChain, LLMs, PostgreSQL, SQLAlchemy).</p></div>
+      <div class="skill"><h3>Enterprise Networking &amp; Infrastructure</h3><p>Cisco IOS routers and switches, VLAN segmentation, inter-VLAN routing, ACLs, pfSense CE stateful firewalls, Windows NPS (RADIUS AAA), IPsec IKEv2 VPN, Tailscale WireGuard ZTNA, GNS3, Wireshark PCAPs.</p></div>
+      <div class="skill"><h3>IT Monitoring &amp; Operations (SIEM / Logging)</h3><p>Project Sentinel (Python / 3D WebGL), Elastic Stack (Logstash, Kibana), Suricata NIDS, osquery host telemetry, File Integrity Monitoring (SHA-256 FIM), MITRE ATT&amp;CK, rate-based anomaly detection.</p></div>
+      <div class="skill"><h3>Identity &amp; Systems Administration (AD / Entra ID)</h3><p>Windows Server 2025 AD DS, departmental OUs, least-privilege delegation, Group Policy (GPO), Microsoft Entra ID (Azure AD), RBAC, MFA, HIPAA data isolation, Linux user permissions, systemd, SSH hardening.</p></div>
+      <div class="skill"><h3>Cloud Infrastructure (AWS / Azure / OCI)</h3><p>AWS (19 Labs: IAM least privilege, KMS CMK envelope encryption, Secrets Manager, GuardDuty, VPC Flow Logs, PrivateLink Endpoints, S3, Aurora, DynamoDB); Azure (NSGs, VMs, Bastion, Defender for Cloud); OCI.</p></div>
+      <div class="skill"><h3>IT Automation &amp; DevOps</h3><p>Python 3.11+ (FastAPI, Flask, Sockets, Threading, Pydantic), Bash, PowerShell, Docker containerization, Kubernetes (Minikube), GitHub Actions CI/CD, Git.</p></div>
+      <div class="skill"><h3>Software Development &amp; Applied AI</h3><p>ACID transactions, SQL injection prevention, regex sanitization, unit testing, OWASP Top 10 defense, Multi-Agent AI Pipelines (LangChain, LLMs, PostgreSQL, SQLAlchemy).</p></div>
     </div>
   </section>
 
@@ -531,29 +551,49 @@ services: DHCP · DNS · HTTP · FTP (RBAC) · email · IoT</div>
         <h3 class="minor">Certifications &amp; courses</h3>
         <ul class="list">
           <li class="hl"><b>Certified in Cybersecurity (CC)</b><span class="sub">ISC2</span><span class="yr">2026</span></li>
-          <li class="hl"><b>OCI 2025 Certified Foundations Associate</b><span class="sub">Oracle University</span><span class="yr">2026</span></li>
-          <li><b>Connect and Protect: Networks and Network Security</b><span class="sub">Google / Coursera</span><span class="yr">2026</span></li>
-          <li><b>Play It Safe: Manage Security Risks</b><span class="sub">Google / Coursera</span><span class="yr">2026</span></li>
-          <li><b>Foundations of Cybersecurity</b><span class="sub">Google / Coursera</span><span class="yr">2025</span></li>
-          <li><b>Introduction to Network Analysis</b><span class="sub">Security Blue Team</span><span class="yr">2026</span></li>
-          <li><b>Introduction to Bash</b><span class="sub">Security Blue Team</span><span class="yr">2026</span></li>
-          <li><b>Introduction to Python</b><span class="sub">Security Blue Team</span><span class="yr">2025</span></li>
-          <li><b>Open-Source Intelligence (OSINT)</b><span class="sub">Basel Institute on Governance</span><span class="yr">2025</span></li>
-          <li><b>Advent of Cyber 2025: 24 challenges</b><span class="sub">TryHackMe</span><span class="yr">2025</span></li>
+          <li class="hl"><b>OCI 2025 Certified Foundations Associate</b><span class="sub">Oracle</span><span class="yr">2026</span></li>
         </ul>
+
+        <details class="cert-drawer">
+          <summary>
+            <span>Additional Professional Development &mdash; Google, Security Blue Team, TryHackMe, Basel Institute</span>
+            <span class="mono" style="font-size:11px; opacity:0.7;">[Expand]</span>
+          </summary>
+          <div class="drawer-content">
+            <ul>
+              <li><span class="cert-name">Connect and Protect: Networks and Network Security</span><span class="cert-issuer">Google / Coursera · 2026</span></li>
+              <li><span class="cert-name">Play It Safe: Manage Security Risks</span><span class="cert-issuer">Google / Coursera · 2026</span></li>
+              <li><span class="cert-name">Foundations of Cybersecurity</span><span class="cert-issuer">Google / Coursera · 2025</span></li>
+              <li><span class="cert-name">Introduction to Network Analysis</span><span class="cert-issuer">Security Blue Team · 2026</span></li>
+              <li><span class="cert-name">Introduction to Bash</span><span class="cert-issuer">Security Blue Team · 2026</span></li>
+              <li><span class="cert-name">Introduction to Python</span><span class="cert-issuer">Security Blue Team · 2025</span></li>
+              <li><span class="cert-name">Open-Source Intelligence (OSINT)</span><span class="cert-issuer">Basel Institute on Governance · 2025</span></li>
+              <li><span class="cert-name">Advent of Cyber 2025: 24 challenges</span><span class="cert-issuer">TryHackMe · 2025</span></li>
+            </ul>
+          </div>
+        </details>
       </div>
       <div class="stack">
         <div>
           <h3 class="minor">Education</h3>
           <ul class="list">
             <li><b>Professional Training in Network and System Security</b><span class="sub">SQI College of ICT, Ibadan</span><span class="yr">2025–26</span></li>
-            <li><b>B.A. History and Diplomatic Studies</b><span class="sub">Kwara State University, Malete</span><span class="yr">2021–25</span></li>
+            <li>
+              <b>B.A. History and Diplomatic Studies</b>
+              <span class="sub">Kwara State University, Malete</span>
+              <span class="sub" style="color: var(--ink); font-size: 13.5px; margin-top: 2px;">Background in research, analysis, and writing &mdash; applied to IT infrastructure and security research.</span>
+              <span class="yr">2021–25</span>
+            </li>
           </ul>
         </div>
         <div>
           <h3 class="minor">Research &amp; talks</h3>
           <ul class="list">
-            <li><b>Roles, Operations and Challenges of Security in Malete, Moro LGA, Kwara State, 2009–2025</b><span class="sub">Peer-reviewed article, co-author · University of Science and Technology, Aden</span><span class="yr">2025</span></li>
+            <li class="hl-research">
+              <b>Roles, Operations and Challenges of Security in Malete, Moro LGA, Kwara State, 2009–2025</b>
+              <span class="sub"><strong>Co-author, peer-reviewed</strong> &middot; University of Science and Technology, Aden</span>
+              <span class="yr">2025</span>
+            </li>
             <li><b>Institutional and Community Security Efforts Against Crime in Malete</b><span class="sub">Oral presentation · Rize International Trade &amp; Economy Congress, Türkiye</span><span class="yr">Oct 2025</span></li>
             <li><b>Institutional and Community Security Efforts Against Crime in Malete</b><span class="sub">Oral presentation · 7th UKSEK International Congress, Ankara</span><span class="yr">Aug 2025</span></li>
           </ul>
